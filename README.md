@@ -20,6 +20,5 @@ Track putative neurons across recording sessions and evaluate the reliability of
 MATLAB, Python, neural data analysis
 
 ## Repository Structure
-- notebooks/: exploratory analysis or summaries
 - scripts/: MATLAB / Python utilities
 - figures/: selected validation outputs
