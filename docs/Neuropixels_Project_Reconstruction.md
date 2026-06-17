@@ -56,6 +56,7 @@ unitmatch is quite accurate to provide march probability among neurons across se
 unitmatch did provide high-confidence pairs, but i think, matching neurons is not a yes or no queston, it's variable. and it's unclear how reliable these good matches are. I want to check the reliability, and the quality.
 # what i did...
 i re-extract the raw waveforms(contains many messy works) of high-confidence pairs, and then drew the averaged waveforms.
+> jih
 then i calculated the ACG of high-confidence pairs.
 now i got waveforms and ACGs, i put these and the matchProb values together, and checked strong fits, poor fits and ambiguious fits from the unitmatch output.
 The reason i chose waveform and ACG is, waveform can show the spaticial features of the neurons, ACG can show the temporal features of the neurons.
