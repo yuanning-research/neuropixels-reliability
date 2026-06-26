@@ -1,4 +1,4 @@
-# Evidence-based Reliability Assessment of Predicted Biological Relationships
+# Evidence-based Reliability Assessment of Computational Predictions
 
 *A computational methods project using cross-day neuron matching as a case study.*
 
