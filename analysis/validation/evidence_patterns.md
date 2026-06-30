@@ -29,3 +29,25 @@ In contrast, Resolved and Uncertain pairs were less clearly separated by individ
 These observations support the evidence-pattern analysis described above. Direction assessments appeared to be more strongly associated with underlying UnitMatch feature values, whereas resolution assessments were influenced by the overall consistency and interpretability of multiple evidence sources.
 
 Together, these results suggest that UnitMatch features may contribute to biological match-versus-mismatch judgments, but confidence in those judgments depends on how multiple evidence sources interact. This distinction motivates the separation between direction assessment and reliability assessment within the proposed evidence-based review framework.
+
+## Feature Behavior Under Direction and Resolution Assessments
+
+To examine how UnitMatch features relate to manual review outcomes, feature distributions were compared across both direction assessments (Match vs Mismatch) and resolution assessments (Resolved vs Uncertain). For each feature, median values, Mann–Whitney U statistics, and rank-biserial correlations (RBC) were calculated.
+
+### Direction Assessment
+
+Several UnitMatch features showed moderate to strong associations with manual match-versus-mismatch decisions. The strongest effects were observed for TotalScore (RBC = 0.56) and MatchProb (RBC = 0.51), followed by WavformSim (RBC = 0.36), spatialdecaySim (RBC = 0.35), and CentroidOverlord (RBC = 0.34).
+
+These results suggest that the similarity features used by UnitMatch capture information that is broadly consistent with biological match judgments. Notably, even mismatch cases often retained high MatchProb values (median = 0.978), indicating that algorithmic confidence alone is not sufficient to guarantee a biologically convincing match.
+
+### Resolution Assessment
+
+Feature behavior differed when comparing resolved and uncertain cases. Distance-related features showed the strongest associations with uncertainty, with EucledianDistance (RBC = -0.33) and CentroidDist (RBC = 0.33) exhibiting larger effects than other features.
+
+In contrast, MatchProb (RBC = -0.24) and TotalScore (RBC = -0.16) showed substantially weaker effects than in the direction analysis. Uncertain cases often retained extremely high MatchProb values (median = 0.9995), despite lacking sufficient evidence for a confident decision.
+
+These findings suggest that match direction and evidential confidence represent distinct aspects of the cross-day matching problem. Features that help distinguish matches from mismatches do not necessarily explain why some candidate pairs remain difficult to interpret.
+
+Together, these results indicate that UnitMatch features may be more informative for determining match direction than for establishing confidence in a match decision. Cases with high algorithmic similarity can still require manual interpretation when supporting evidence is incomplete, conflicting, or difficult to reconcile.
+
+This distinction highlights an important limitation of relying solely on similarity scores: algorithmic confidence and evidential confidence are not always equivalent.
