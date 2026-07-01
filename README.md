@@ -128,17 +128,8 @@ The framework developed here focuses on evidence integration, uncertainty charac
 
 ```text
 analysis/
-│
-├── bombcell/
-│
-├── unitmatch/
-│  
-└── validation/
-
 docs/
-
 figures/
-
 README.md
 LICENSE
 ```
