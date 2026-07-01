@@ -1,16 +1,16 @@
-# Evidence-based Reliability Assessment of Computational Predictions
+# Evidence-Based Reliability Assessment of Computational Predictions
 
-*A computational methods project using cross-day neuron matching as a case study.*
+*A case study of evidence integration, uncertainty characterization, and validation in biological entity matching.*
 
 ---
 
 ## Overview
 
-Many computational methods predict relationships between biological entities, but evaluating whether those predictions are reliable remains difficult. Validation evidence is often incomplete, noisy, or inconsistent, making it challenging to determine how much confidence should be placed in an individual prediction.
+Computational methods frequently predict relationships between biological entities. However, evaluating whether those predictions should be trusted remains a fundamental challenge. Validation evidence is often incomplete, noisy, partially redundant, or even contradictory, making it difficult to determine how much confidence should be placed in an individual prediction.
 
-This project investigates how multiple sources of biological evidence can be combined to assess the reliability of predicted relationships. Rather than treating predictions as simply correct or incorrect, the goal is to characterize different levels of support, identify uncertainty, and better understand where computational confidence agrees or disagrees with independent biological evidence.
+This project investigates how multiple sources of biological evidence can be integrated to assess the reliability of computational predictions. Rather than treating predictions as simply correct or incorrect, the goal is to characterize different levels of support, identify sources of uncertainty, and understand where algorithmic confidence agrees or disagrees with independent biological evidence.
 
-Cross-day neuron matching in chronic Neuropixels recordings serves as the initial case study because it naturally provides multiple independent sources of validation.
+Cross-day neuron matching in chronic Neuropixels recordings serves as the initial case study because it naturally provides multiple independent sources of validation while presenting a realistic biological entity matching problem.
 
 ---
 
@@ -27,7 +27,7 @@ More specifically:
 
 ---
 
-## Current Framework
+## Framework
 
 The current workflow consists of four stages.
 
@@ -42,13 +42,13 @@ Each candidate pair is evaluated using evidence that is independent of the origi
 - waveform morphology
 - autocorrelogram (ACG) structure
 
-Additional evidence sources may be incorporated in future work.
+These evidence sources are intended to provide biological support that is independent of the matching algorithm itself.
 
 ### 3. Reliability Assessment
 
 Candidate pairs are manually reviewed by integrating multiple evidence sources rather than relying on a single similarity metric.
 
-Current reliability categories include:
+Five reliability categories were defined:
 
 - Strong Match
 - Likely Match
@@ -56,98 +56,91 @@ Current reliability categories include:
 - Likely Mismatch
 - Strong Mismatch
 
-These labels represent the overall level of biological support rather than the original model prediction.
+These labels represent the strength of biological support rather than the original algorithmic prediction.
 
 ### 4. Reliability Analysis
 
 The resulting annotations are used to investigate:
 
 - agreement between prediction confidence and biological evidence
-- disagreement between different evidence sources
-- common sources of uncertainty
+- disagreement between evidence sources
+- sources of uncertainty
 - characteristics of supported and unsupported predictions
 
 ---
 
-## Current Progress
+## Key Findings
 
-Current work has focused on establishing an initial validation framework.
+### Algorithmic Confidence and Evidential Confidence Are Not Equivalent
 
-Completed work includes:
+Manual review revealed that extremely high matching probabilities do not always correspond to strong biological support.
 
-- cross-session neuron matching using UnitMatch
-- waveform reconstruction from raw spike recordings
-- ACG extraction and visualization
-- manual review of high-confidence candidate pairs
-- construction of an evidence table for reliability assessment
-- preliminary feature comparisons across reliability categories
-- documentation of representative agreement, uncertainty, and mismatch cases
+Among 21 manually labeled uncertain cases:
 
-Detailed analyses are available in the project documentation.
+- 16 had MatchProb > 0.99
+- 14 had MatchProb > 0.999
+
+These observations suggest that algorithmic confidence and evidential confidence represent distinct concepts and should not be assumed to be interchangeable.
+
+### Direction and Resolution Represent Different Validation Problems
+
+Two complementary outcomes were analyzed:
+
+- **Direction:** Match vs. Mismatch
+- **Resolution:** Resolved vs. Uncertain
+
+Feature association analyses revealed that these outcomes are driven by different evidence sources.
+
+Direction decisions were most strongly associated with similarity-related features, including:
+
+- TotalScore
+- MatchProb
+- waveform similarity
+- spatial profile similarity
+
+In contrast, Resolution decisions were more strongly associated with spatial consistency, with Euclidean distance emerging as the strongest predictor of uncertainty.
+
+These results suggest that determining whether two entities correspond to one another and determining how confidently that decision can be made are distinct problems.
+
+### Human Decisions Integrate Multiple Sources of Evidence
+
+Rank-biserial correlation analysis, univariate logistic regression, and multivariate logistic regression were used to examine which features contributed to manual review decisions.
+
+Several similarity-related features were individually associated with Match/Mismatch decisions. However, most predictors lost significance when considered jointly, indicating substantial shared information among evidence sources.
+
+This suggests that manual review decisions are based on the integration of multiple correlated sources of evidence rather than reliance on any single metric.
 
 ---
 
-## Preliminary Observations
+## Generalization
 
-Several consistent patterns have emerged during manual review.
+Although developed for cross-day neuron matching, the underlying challenge addressed in this project is more general.
 
-### Prediction confidence and biological support are not always aligned.
+Many biological analyses require determining whether observations collected across different conditions correspond to the same underlying biological entity. Examples include matching cells across experiments, aligning cellular populations across datasets, and other forms of biological entity matching.
 
-Some neuron pairs assigned very high matching probabilities showed limited supporting biological evidence after independent review.
+A common challenge in these settings is that similarity metrics, model confidence scores, and independent validation evidence may not always agree. Reliable decision-making therefore requires evidence integration under uncertainty rather than dependence on a single metric.
 
-### Different evidence sources contribute unequally.
-
-Waveform morphology generally provided stronger support than ACG structure, particularly when distinguishing likely matches from likely mismatches.
-
-### Many uncertain cases reflect insufficient evidence.
-
-Most uncertain pairs were associated with incomplete or ambiguous evidence rather than direct disagreement between evidence sources.
-
-### Reliability assessment itself contains uncertainty.
-
-Some candidate pairs remained difficult to classify consistently, suggesting that reliability should be viewed as a spectrum rather than a binary decision.
-
-These observations motivate further investigation into computational approaches for reliability assessment.
-
----
-
-## Future Directions
-
-Current work focuses on manual evidence integration. Future work will explore more systematic approaches for assessing reliability.
-
-Potential directions include:
-
-### Evidence Integration
-
-- incorporate additional independent validation features
-- compare the contribution of different evidence sources
-- investigate evidence weighting strategies
-
-### Reliability Modeling
-
-- develop computational approaches for reliability scoring
-- compare model confidence with independently assessed reliability
-- investigate whether uncertainty can be estimated directly from available evidence
-
-### Generalization
-
-Although this project focuses on cross-day neuron matching, the broader questions addressed here arise in many areas of computational biology where predicted biological relationships require validation under incomplete or uncertain evidence.
-
-Future work will explore whether similar reliability assessment strategies can be applied to other biological prediction problems.
+The framework developed here focuses on evidence integration, uncertainty characterization, and validation rather than on any specific matching algorithm. These principles may be relevant to a broader class of biological entity matching problems.
 
 ---
 
 ## Repository Structure
 
 ```text
-README.md
-
 analysis/
+│
+├── bombcell/
+│
+├── unitmatch/
+│  
+└── validation/
 
 docs/
 
 figures/
 
+README.md
+LICENSE
 ```
 
 ---
@@ -162,8 +155,20 @@ figures/
 
 ---
 
+## Future Directions
+
+Potential future directions include:
+
+- expanding validation to larger datasets
+- incorporating additional independent evidence sources
+- translating manual evidence integration into computational reliability scoring methods
+- comparing algorithmic confidence and reliability estimates directly
+- extending the framework to other biological entity matching problems
+
+---
+
 ## Project Status
 
-This project is under active development.
+The current framework, manual review system, and statistical analyses have been completed for the initial case study dataset.
 
-Current efforts focus on understanding how independent biological evidence can be integrated into a reproducible framework for assessing the reliability of predicted biological relationships.
+Ongoing work focuses on refining reliability assessment methodologies and exploring how evidence-based validation strategies can be generalized to broader biological prediction problems.
