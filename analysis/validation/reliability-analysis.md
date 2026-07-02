@@ -97,15 +97,33 @@ This suggests that MatchProb alone may not distinguish strongly supported matche
 
 ## Representative Strong Match: S1 Unit 112 ↔ S2 Unit 138
 
-[保留原文]
+This pair was classified as a Strong Match because both waveform and ACG evidence strongly supported the match.
+
+The waveform morphology was highly consistent across sessions. The trough timing, waveform width, channel spread, and overall shape were nearly identical. The ACG profiles also showed a closely matched refractory dip and recovery pattern.
+
+This pair also appeared relatively isolated among nearby candidate pairs. Neighboring pairs had somewhat similar ACG structure, but their waveforms showed clearer differences, suggesting that this pair had the strongest combined evidence.
+
+Overall, this case represents a high-confidence match supported by both morphology and firing-pattern evidence.
 
 ## Representative Uncertain Case: S1 Unit 221 ↔ S2 Unit 266
 
-[保留原文]
+This pair was classified as Uncertain because neither evidence source provided a confident validation signal.
+
+The waveform showed partial similarity, but one side contained an abrupt flat segment, suggesting possible truncation, padding, or waveform extraction artifact rather than a clean biological waveform difference. The ACG was also sparse and did not provide a clear refractory/recovery structure.
+
+This case represents an uncertainty pattern driven mainly by insufficient or unreliable evidence, rather than direct disagreement between waveform and ACG.
 
 ## Representative Likely Mismatch: S1 Unit 214 ↔ S2 Unit 236
 
-[保留原文]
+This pair was classified as a Likely Mismatch despite a high MatchProb (0.997).
+
+The waveform similarity metric remained relatively high (WavformSim = 0.875), but visual inspection suggested notable differences in waveform morphology. The overall waveform shapes appeared broader and more asymmetric across sessions, making it difficult to interpret them as a convincing continuation of the same unit.
+
+The waveform was also affected by an abrupt truncation pattern similar to that observed in some uncertain cases. However, unlike the uncertain example, the underlying waveform structure still appeared meaningfully different after accounting for this artifact.
+
+The ACG provided limited evidence and was largely uninformative due to sparse spike counts. As a result, the classification was driven primarily by waveform disagreement rather than firing-pattern evidence.
+
+This case illustrates that relatively high similarity scores do not always correspond to convincing biological matches and highlights the importance of visual inspection when evaluating high-confidence candidate pairs.
 
 ## Preliminary Interpretation
 
